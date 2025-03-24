@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Tag Detail{% endblock %}
+
+{% block content %}
+<h2>Tag Detail</h2>
+<p><strong>Name:</strong> {{ tag.name }}</p>
+<a href="{% url 'tags:tag-update' tag.id %}">Edit</a> |
+<a href="{% url 'tags:tag-delete' tag.id %}">Delete</a>
+{% endblock %}

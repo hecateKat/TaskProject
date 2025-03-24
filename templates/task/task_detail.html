@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Task Detail{% endblock %}
+
+{% block content %}
+<h2>Task Detail</h2>
+<p><strong>Content:</strong> {{ task.content }}</p>
+<p><strong>Created:</strong> {{ task.datetime }}</p>
+<p><strong>Deadline:</strong> {{ task.deadline|default:"No deadline" }}</p>
+<p><strong>Status:</strong> {% if task.is_done %}Done{% else %}Not Done{% endif %}</p>
+<p><strong>Tags:</strong>
+    {% for tag in task.tags.all %}
+        {{ tag.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        No Tags
+    {% endfor %}
+</p>
+<a href="{% url 'tasks:task-update' task.id %}">Edit</a> |
+<a href="{% url 'tasks:task-delete' task.id %}">Delete</a> |
+<a href="{% url 'tasks:task-toggle-status' task.id %}">
+    {% if task.is_done %}Undo{% else %}Complete{% endif %}
+</a>
+{% endblock %}

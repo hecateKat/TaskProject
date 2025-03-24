@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Tag List{% endblock %}
+
+{% block content %}
+<h2>Tag List</h2>
+<form method="get" action="">
+    {{ search_form.as_p }}
+    <button type="submit">Search</button>
+</form>
+<ul>
+    {% for tag in tag_list %}
+    <li>
+        <strong>{{ tag.name }}</strong><br>
+        <a href="{% url 'tags:tag-detail' tag.id %}">View</a> |
+        <a href="{% url 'tags:tag-update' tag.id %}">Edit</a> |
+        <a href="{% url 'tags:tag-delete' tag.id %}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'tags:tag-create' %}">Add New Tag</a>
+{% endblock %}

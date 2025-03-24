@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Task List{% endblock %}
+
+{% block content %}
+<h2>Task List</h2>
+<form method="get" action="">
+    {{ search_form.as_p }}
+    <button type="submit">Search</button>
+</form>
+<ul>
+    {% for task in task_list %}
+    <li>
+        <strong>{{ task.content }}</strong><br>
+        Created: {{ task.datetime }}<br>
+        {% if task.deadline %}Deadline: {{ task.deadline }}<br>{% endif %}
+        Status: {% if task.is_done %}Done{% else %}Not Done{% endif %}
+        <br>Tags:
+        {% for tag in task.tags.all %}
+            {{ tag.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        <br>
+        <a href="{% url 'tasks:task-detail' task.id %}">View</a> |
+        <a href="{% url 'tasks:task-update' task.id %}">Edit</a> |
+        <a href="{% url 'tasks:task-delete' task.id %}">Delete</a> |
+        <a href="{% url 'tasks:task-toggle-status' task.id %}">
+            {% if task.is_done %}Undo{% else %}Complete{% endif %}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'tasks:task-create' %}">Add New Task</a>
+{% endblock %}
