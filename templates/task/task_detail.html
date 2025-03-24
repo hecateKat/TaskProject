@@ -15,9 +15,9 @@
         No Tags
     {% endfor %}
 </p>
-<a href="{% url 'tasks:task-update' task.id %}">Edit</a> |
-<a href="{% url 'tasks:task-delete' task.id %}">Delete</a> |
-<a href="{% url 'tasks:task-toggle-status' task.id %}">
+<a href="{% url 'task:task-update' task.id %}">Edit</a> |
+<a href="{% url 'task:task-delete' task.id %}">Delete</a> |
+<a href="{% url 'task:task-toggle-status' task.id %}">
     {% if task.is_done %}Undo{% else %}Complete{% endif %}
 </a>
 {% endblock %}
