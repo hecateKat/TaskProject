@@ -14,6 +14,7 @@ class TaskForm(forms.ModelForm):
         fields = ["content", "datetime", "deadline", "is_done", "tags"]
         widgets = {
             "content": forms.Textarea(attrs={"placeholder": "Describe your task here...", "rows": 3}),
+            "datetime": forms.DateTimeInput(attrs={"type": "datetime-local"}),
             "deadline": forms.DateTimeInput(attrs={"type": "datetime-local"}),
         }
 

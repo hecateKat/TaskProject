@@ -113,18 +113,18 @@ class TagDetailView(LoginRequiredMixin, generic.DetailView):
 class TagCreateView(LoginRequiredMixin, generic.CreateView):
     model = Tag
     form_class = TagForm
-    success_url = reverse_lazy("tags:tag-list")
+    success_url = reverse_lazy("task:tag-list")
     template_name = "task/tag_form.html"
 
 
 class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Tag
     form_class = TagForm
-    success_url = reverse_lazy("tags:tag-list")
+    success_url = reverse_lazy("task:tag-list")
     template_name = "task/tag_form.html"
 
 
 class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Tag
-    success_url = reverse_lazy("tags:tag-list")
+    success_url = reverse_lazy("task:tag-list")
     template_name = "task/tag_confirm_delete.html"
